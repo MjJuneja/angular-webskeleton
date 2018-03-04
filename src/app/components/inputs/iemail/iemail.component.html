@@ -1,0 +1,10 @@
+<extended-input
+  [labelText]="'Enter Email'"
+  [inputErrors]="vEmail.errors"
+  [errorKeys]="{touched: '',
+                required: 'Email is required',
+                email: 'Not a valid Email',
+                validEmail: 'Not a valid Email'}"
+  [labelCss]="'iemailCss'">
+  <input [formControl]="vEmail" [(ngModel)]="uEmail" type="text"/>
+</extended-input>

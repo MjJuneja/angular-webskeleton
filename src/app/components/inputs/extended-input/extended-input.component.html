@@ -1,0 +1,8 @@
+<div class="form-group">
+  <label i18n class="control-label" class={{labelCssClass}}>{{labelText}}
+    <ng-content></ng-content>
+  </label>
+  <span class="help-block" *ngIf="errorMessage" [ngClass]="{'has-error':errorMessage}">
+    {{errorMessage}}
+  </span>
+</div>
