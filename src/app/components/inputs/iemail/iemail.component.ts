@@ -8,19 +8,18 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class IemailComponent implements OnInit {
   vEmail: FormControl;
-  uEmail:string;
+  uEmail: string;
 
   constructor() {
-    this.vEmail = new FormControl(null, {validators:[Validators.required, Validators.email, this.checkEmail, this.checkTouched],updateOn:'blur'});
+    this.vEmail = new FormControl(null, { validators: [Validators.required, Validators.email, this.checkEmail, this.checkPristine], updateOn: 'blur' });
   }
 
-  checkTouched = (control: FormControl)=>{
-    console.log(control);
-    return {touched:control.pristine};
+  checkPristine = (control: FormControl):object => {
+    return { pristine: control.pristine };
   }
 
-  checkEmail = (control: FormControl) => {
-    if(control.value){
+  checkEmail = (control: FormControl):object => {
+    if (control.value) {
       var atpos = control.value.indexOf("@");
       var dotpos = control.value.lastIndexOf(".");
       if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= control.value.length) {
