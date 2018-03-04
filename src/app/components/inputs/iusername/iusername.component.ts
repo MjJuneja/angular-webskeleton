@@ -15,8 +15,11 @@ export class IusernameComponent implements OnInit {
 
   constructor(private iusernameService: IusernameService) {
     this.vUsername = new FormControl(null,
-      { validators: [Validators.required, Validators.pattern('[a-zA-Z0-9_.]{5,20}'), this.checkPristine],
-      asyncValidators: [this.checkAvailability], updateOn:'blur'});
+      {
+        validators: [Validators.required, Validators.pattern('[a-zA-Z0-9_.]{5,20}'), this.checkPristine],
+        asyncValidators: [this.checkAvailability.bind(iusernameService)],
+        updateOn:'blur'
+      });
   }
 
   checkPristine = (control: FormControl):object => {
@@ -24,14 +27,18 @@ export class IusernameComponent implements OnInit {
   }
 
   checkAvailability = (control: FormControl):object => {
-    var promise = this.iusernameService.checkAvailability({username:this.uUsername});
-    promise.subscribe((data => {
-      //check object
+    console.log('dd');
+    this.iusernameService.checkAvailability({username:this.uUsername})
+    .subscribe((data) => {
+
+      console.log('hello');
+
+    //   //check object
       return { available: true }
     }),
     (error=>{
       return { '503': true }
-    }));
+    });
     return { checking: true }
   }
 

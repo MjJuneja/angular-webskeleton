@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './components/forms/signup/signup.component';
 import { IusernameComponent } from './components/inputs/iusername/iusername.component';
 import { IfullnameComponent } from './components/inputs/ifullname/ifullname.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import { IfullnameComponent } from './components/inputs/ifullname/ifullname.comp
     IfullnameComponent
   ],
   imports: [
-    BrowserModule, FormsModule, ReactiveFormsModule
+    BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
