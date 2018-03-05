@@ -14,8 +14,11 @@ export class IemailComponent implements OnInit {
     this.vEmail = new FormControl(null, { validators: [Validators.required, Validators.email, this.checkEmail, this.checkPristine], updateOn: 'blur' });
   }
 
-  checkPristine = (control: FormControl):object => {
-    return { pristine: control.pristine };
+  checkPristine = (control: FormControl): object => {
+    if (control.pristine)
+      return { pristine: true };
+    else
+      return null;
   }
 
   checkEmail = (control: FormControl):object => {
@@ -23,10 +26,10 @@ export class IemailComponent implements OnInit {
       var atpos = control.value.indexOf("@");
       var dotpos = control.value.lastIndexOf(".");
       if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= control.value.length) {
-        return { validEmail: true }
+        return { invalidEmail: true }
       }
     }
-    return { validEmail: false }
+    return null;
   }
 
   ngOnInit() {

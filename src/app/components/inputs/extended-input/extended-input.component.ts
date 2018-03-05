@@ -21,6 +21,7 @@ export class ExtendedInputComponent implements OnChanges,OnInit {
 
   errorMessage:string = '';
   labelCssClass:string = '';
+  errorCss:string = 'defaultError';
 
   constructor(){
   }
@@ -32,6 +33,11 @@ export class ExtendedInputComponent implements OnChanges,OnInit {
       Object.keys(this.errorKeys).some(key => {
         if (errors[key]) {
           this.errorMessage = this.errorKeys[key];
+          if(this.errorKeys[key+'Css'])
+            this.errorCss = this.errorKeys[key+'Css'];
+          else
+            this.errorCss = 'defaultError';
+
           return true;
         }
       });

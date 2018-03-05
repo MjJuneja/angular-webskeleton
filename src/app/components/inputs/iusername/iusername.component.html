@@ -2,9 +2,11 @@
   [labelText]="'Username'"
   [inputErrors]="vUsername.errors"
   [errorKeys]="{pristine: '',
-                required:'Username is required',
+                required: 'Username is required',
                 pattern: 'Invalid username (Should have only a-z,0-9,.,_ and 5-20 chars,without any spaces)',
-                available : 'Username already taken!',
+                available: 'Username available',
+                availableCss: 'usernameAvailable',
+                unavailable : 'Username already taken!',
                 '503': 'No internet access'
               }">
   <input [formControl]="vUsername" [(ngModel)]="uUsername" type="text"/>

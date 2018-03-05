@@ -17,29 +17,28 @@ export class IusernameComponent implements OnInit {
     this.vUsername = new FormControl(null,
       {
         validators: [Validators.required, Validators.pattern('[a-zA-Z0-9_.]{5,20}'), this.checkPristine],
-        asyncValidators: [this.checkAvailability.bind(iusernameService)],
-        updateOn:'blur'
+        asyncValidators: [this.checkAvailability.bind(this)],
+        updateOn: 'blur'
       });
+
   }
 
-  checkPristine = (control: FormControl):object => {
-    return { pristine: control.pristine };
+  checkPristine = (control: FormControl): object => {
+    if (control.pristine)
+      return { pristine: true };
+    else
+      return null;
   }
 
-  checkAvailability = (control: FormControl):object => {
-    console.log('dd');
-    this.iusernameService.checkAvailability({username:this.uUsername})
-    .subscribe((data) => {
-
-      console.log('hello');
-
-    //   //check object
-      return { available: true }
-    }),
-    (error=>{
-      return { '503': true }
-    });
-    return { checking: true }
+  checkAvailability = (control: FormControl): any => {
+    const q = new Promise((resolve, reject) => {
+    this.iusernameService.checkAvailability({username:control.value}).subscribe(() => {
+        resolve({ 'available': true });
+      }, () => {
+        resolve({ '503': true });
+      })
+    })
+    return q;
   }
 
   ngOnInit() {
