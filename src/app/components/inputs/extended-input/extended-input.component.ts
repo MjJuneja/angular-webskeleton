@@ -18,34 +18,39 @@ export class ExtendedInputComponent implements OnChanges,OnInit {
   errorKeys:any;
   @Input()
   labelCss:string = '';
+  @Input()
+  message:string = '';
 
-  errorMessage:string = '';
+  displayMessage:string = '';
+  displayClass:string = '';
   labelCssClass:string = '';
-  errorCss:string = 'defaultError';
 
   constructor(){
   }
 
   ngOnChanges(changes:any):void {
-    var errors:any = changes.inputErrors.currentValue;
-    this.errorMessage = '';
-    if (errors) {
-      Object.keys(this.errorKeys).some(key => {
-        if (errors[key]) {
-          this.errorMessage = this.errorKeys[key];
-          if(this.errorKeys[key+'Css'])
-            this.errorCss = this.errorKeys[key+'Css'];
-          else
-            this.errorCss = 'defaultError';
-
-          return true;
-        }
-      });
+    this.displayMessage = '';
+    if(changes.inputErrors && changes.inputErrors.currentValue){
+      var errors:any = changes.inputErrors.currentValue;
+      this.displayClass = 'defaultError';
+      if (errors) {
+        Object.keys(this.errorKeys).some(key => {
+          if (errors[key]) {
+            this.displayMessage = this.errorKeys[key];
+            return true;
+          }
+        });
+      }
+    }
+    else if(changes.message){
+      this.displayMessage = this.message;
+      this.displayClass = 'message';
     }
   };
 
   ngOnInit(){
     this.labelCssClass = this.labelCss || 'globalLabel';
-    this.errorMessage = '';
+    this.displayMessage = '';
+    this.displayClass = 'defaultError';
   }
 }

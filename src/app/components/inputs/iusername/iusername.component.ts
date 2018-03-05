@@ -12,6 +12,7 @@ export class IusernameComponent implements OnInit {
 
   vUsername: FormControl;
   uUsername: string;
+  message: string = '';
 
   constructor(private iusernameService: IusernameService) {
     this.vUsername = new FormControl(null,
@@ -24,6 +25,7 @@ export class IusernameComponent implements OnInit {
   }
 
   checkPristine = (control: FormControl): object => {
+    this.message = '';
     if (control.pristine)
       return { pristine: true };
     else
@@ -32,8 +34,15 @@ export class IusernameComponent implements OnInit {
 
   checkAvailability = (control: FormControl): any => {
     const q = new Promise((resolve, reject) => {
-    this.iusernameService.checkAvailability({username:control.value}).subscribe(() => {
-        resolve({ 'available': true });
+      this.iusernameService.checkAvailability({ username: control.value }).subscribe(() => {
+        //logic
+        if (true) {
+          this.message = "Username available";
+          resolve(null);
+        }
+        // else {
+        //   resolve({ 'unavailable': true });
+        // }
       }, () => {
         resolve({ '503': true });
       })

@@ -9,6 +9,7 @@ import { SignupComponent } from './components/forms/signup/signup.component';
 import { IusernameComponent } from './components/inputs/iusername/iusername.component';
 import { IfullnameComponent } from './components/inputs/ifullname/ifullname.component';
 import { HttpClientModule } from '@angular/common/http';
+import { IpasswordComponent } from './components/inputs/ipassword/ipassword.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     SignupComponent,
     ExtendedInputComponent,
     IusernameComponent,
-    IfullnameComponent
+    IfullnameComponent,
+    IpasswordComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule

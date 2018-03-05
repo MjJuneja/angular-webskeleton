@@ -4,10 +4,9 @@
   [errorKeys]="{pristine: '',
                 required: 'Username is required',
                 pattern: 'Invalid username (Should have only a-z,0-9,.,_ and 5-20 chars,without any spaces)',
-                available: 'Username available',
-                availableCss: 'usernameAvailable',
                 unavailable : 'Username already taken!',
                 '503': 'No internet access'
-              }">
+              }"
+  [message]="message">
   <input [formControl]="vUsername" [(ngModel)]="uUsername" type="text"/>
 </extended-input>
