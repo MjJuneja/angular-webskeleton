@@ -1,10 +1,12 @@
 <form (submit)="onSubmit()">
-
-  <iemail></iemail>
+  <advanceInput [type]="'email'"></advanceInput>
+  <advanceInput [type]="'username'"></advanceInput>
+  <advanceInput [type]="'password'" [dual]='true'></advanceInput>
+  <!-- <iemail></iemail>
   <iusername></iusername>
-  <ipassword [dual]='true'></ipassword>
-  <button class="btn btn-primary">
-    Submit
+  <ipassword [dual]='true'></ipassword> -->
+  <button class="btn btn-primary" (click)='signup()'>
+    Signup
   </button>
 
 </form>

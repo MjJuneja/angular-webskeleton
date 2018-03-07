@@ -4,8 +4,7 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 @Component({
   selector: 'extended-input',
   templateUrl: './extended-input.component.html',
-  styleUrls: ['./extended-input.component.css'],
-
+  styleUrls: ['./extended-input.component.css']
 })
 
 
@@ -20,6 +19,8 @@ export class ExtendedInputComponent implements OnChanges,OnInit {
   labelCss:string = '';
   @Input()
   message:string = '';
+  @Input()
+  messageClass:string = '';
 
   displayMessage:string = '';
   displayClass:string = '';
@@ -44,7 +45,7 @@ export class ExtendedInputComponent implements OnChanges,OnInit {
     }
     else if(changes.message){
       this.displayMessage = this.message;
-      this.displayClass = 'message';
+      this.displayClass = this.messageClass;
     }
   };
 

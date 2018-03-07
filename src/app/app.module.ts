@@ -10,6 +10,7 @@ import { IusernameComponent } from './components/inputs/iusername/iusername.comp
 import { IfullnameComponent } from './components/inputs/ifullname/ifullname.component';
 import { HttpClientModule } from '@angular/common/http';
 import { IpasswordComponent } from './components/inputs/ipassword/ipassword.component';
+import { AdvanceinputComponent } from './components/inputs/advanceinput/advanceinput.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { IpasswordComponent } from './components/inputs/ipassword/ipassword.comp
     ExtendedInputComponent,
     IusernameComponent,
     IfullnameComponent,
-    IpasswordComponent
+    IpasswordComponent,
+    AdvanceinputComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule

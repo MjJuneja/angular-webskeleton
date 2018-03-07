@@ -7,6 +7,7 @@
                 unavailable : 'Username already taken!',
                 '503': 'No internet access'
               }"
-  [message]="message">
+  [message]="message"
+  [messageClass]="'message'">
   <input [formControl]="vUsername" [(ngModel)]="uUsername" type="text"/>
 </extended-input>

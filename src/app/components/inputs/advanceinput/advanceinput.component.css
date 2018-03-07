@@ -1,0 +1,14 @@
+:host /deep/ .iemailCss{
+  color: red;
+}
+
+:host /deep/ .uMessage{
+  background-color: chartreuse;
+  color: black;
+}
+
+:host /deep/ .pMessage{
+  background-color: cornflowerblue;
+  color: black;
+}
+
