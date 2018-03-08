@@ -14,18 +14,18 @@ export class AdvanceinputComponent implements OnInit {
   type: string = '';
   message: string = '';
 
-  vEmail: FormControl;
-  uEmail: string;
+  $email: FormControl;
+  _email: string;
 
-  vUsername: FormControl;
-  uUsername: string;
+  $username: FormControl;
+  _username: string;
 
   @Input()
   dual: boolean;
-  vPassword: FormControl;
-  uPassword: string;
-  vPassword2: FormControl;
-  uPassword2: string;
+  $password: FormControl;
+  _password: string;
+  $password2: FormControl;
+  _password2: string;
   createMode: boolean;
 
   constructor(private advanceInput: AdvanceinputService) {
@@ -53,7 +53,7 @@ export class AdvanceinputComponent implements OnInit {
   }
 
   match = (control: FormControl): object => {
-    if (this.uPassword && this.uPassword === this.uPassword2){
+    if (this._password && this._password === this._password2){
       this.message = 'Passwords Match';
       return null;
     }
@@ -83,25 +83,25 @@ export class AdvanceinputComponent implements OnInit {
   ngOnInit() {
     switch (this.type) {
       case 'email':
-        this.vEmail = new FormControl(null, { validators: [Validators.required, Validators.email, this.checkEmail, this.checkPristine], updateOn: 'blur' });
+        this.$email = new FormControl(null, { validators: [Validators.required, Validators.email, this.checkEmail, this.checkPristine], updateOn: 'blur' });
         break;
       case 'username':
-        this.vUsername = new FormControl(null,
+        this.$username = new FormControl(null,
           {
             validators: [Validators.required, Validators.pattern('[a-zA-Z0-9_.]{5,20}'), this.checkPristine],
             asyncValidators: [this.checkAvailability.bind(this)],
-            updateOn: 'blur'
+            updateOn: 'change'
           });
         break;
       case 'password':
-        this.vPassword = new FormControl(null,
+        this.$password2 = new FormControl(null,
           {
             validators: [Validators.required, Validators.pattern('[a-z0-9A-Z!@#$%^&*()_.]{8,25}'), Validators.minLength(8), Validators.maxLength(25), this.checkPristine, this.match],
             updateOn: 'blur'
           });
         this.createMode = this.dual || false;
         if (this.createMode) {
-          this.vPassword2 = new FormControl(null,
+          this.$password = new FormControl(null,
             {
               validators: [Validators.required, this.checkPristine, this.match],
               updateOn: 'blur'

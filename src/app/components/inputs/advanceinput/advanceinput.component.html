@@ -1,18 +1,18 @@
-<extended-input *ngIf='vEmail'
+<extended-input *ngIf='$email'
   [labelText]="'Email'"
-  [inputErrors]="vEmail.errors"
+  [inputErrors]="$email.errors"
   [errorKeys]="{pristine: '',
                 required: 'Email is required',
                 email: 'Not a valid Email',
                 invalidEmail: 'Not a valid Email'}"
   [labelCss]="'iemailCss'">
-  <input [formControl]="vEmail" [(ngModel)]="uEmail" type="text"/>
+  <input [formControl]="$email" [(ngModel)]="_email" type="text"/>
 </extended-input>
 
 
-<extended-input *ngIf='vUsername'
+<extended-input *ngIf='$username'
   [labelText]="'Username'"
-  [inputErrors]="vUsername.errors"
+  [inputErrors]="$username.errors"
   [errorKeys]="{pristine: '',
                 required: 'Username is required',
                 pattern: 'Invalid username (Should have only a-z,0-9,.,_ and 5-20 chars,without any spaces)',
@@ -21,29 +21,28 @@
               }"
   [message]="message"
   [messageClass]="'uMessage'">
-  <input [formControl]="vUsername" [(ngModel)]="uUsername" type="text"/>
+  <input [formControl]="$username" [(ngModel)]="_username" type="text"/>
 </extended-input>
 
-<extended-input *ngIf='vPassword'
+<extended-input *ngIf='$password2'
   [labelText]="'Password'"
-  [inputErrors]="vPassword.errors"
+  [inputErrors]="$password2.errors"
   [errorKeys]="{pristine: '',
                 required: 'Password is required',
                 minlength: 'Password too small',
                 maxlength: 'Password too long',
                 pattern: 'Invalid character used,use(a-z,0-9,A-Z,!,@,#,$,%,^,&,*,(,),_,.)'
               }">
-  <input [formControl]="vPassword" [(ngModel)]="uPassword" type="password"/>
+  <input [formControl]="$password2" [(ngModel)]="_password2" type="password"/>
 </extended-input>
-
 <extended-input *ngIf="createMode"
   [labelText]="'Re-enter Password'"
-  [inputErrors]="vPassword2.errors"
+  [inputErrors]="$password.errors"
   [errorKeys]="{pristine: '',
                 required: 'Required',
                 mismatch: 'Passwords do not match!'
               }"
   [message]="message"
   [messageClass]="'pMessage'">
-  <input [formControl]="vPassword2" [(ngModel)]="uPassword2" type="password"/>
+  <input [formControl]="$password" [(ngModel)]="_password" type="password"/>
 </extended-input>

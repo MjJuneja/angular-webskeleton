@@ -5,8 +5,9 @@
   <!-- <iemail></iemail>
   <iusername></iusername>
   <ipassword [dual]='true'></ipassword> -->
-  <button class="btn btn-primary" (click)='signup()'>
+  <button class="btn btn-primary">
     Signup
   </button>
+  <span *ngIf="result">{{result}}</span>
 
 </form>
