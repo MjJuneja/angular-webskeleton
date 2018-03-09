@@ -20,8 +20,6 @@ export class AdvanceinputComponent implements OnInit {
   $username: FormControl;
   _username: string;
 
-  @Input()
-  dual: boolean;
   $password: FormControl;
   _password: string;
   $password2: FormControl;
@@ -53,12 +51,22 @@ export class AdvanceinputComponent implements OnInit {
   }
 
   match = (control: FormControl): object => {
-    if (this._password && this._password === this._password2){
+    if (this._password && this._password === this._password2) {
       this.message = 'Passwords Match';
       return null;
     }
     else
       return { mismatch: true };
+  }
+
+  passwordPattern = (control: FormControl): object => {
+    var x = Validators.pattern('[a-z0-9A-Z!@#$%^&*()_.]{8,25}')(control);
+    if (x) {
+      return { passwordPattern: true }
+    }
+    else {
+      return x;
+    }
   }
 
   checkAvailability = (control: FormControl): any => {
@@ -94,19 +102,23 @@ export class AdvanceinputComponent implements OnInit {
           });
         break;
       case 'password':
-        this.$password2 = new FormControl(null,
+        this.$password = new FormControl(null,
+          {
+            validators: [Validators.required, this.passwordPattern, this.checkPristine],
+            updateOn: 'blur'
+          });
+        break;
+      case 'password2':
+        this.$password = new FormControl(null,
           {
             validators: [Validators.required, Validators.pattern('[a-z0-9A-Z!@#$%^&*()_.]{8,25}'), Validators.minLength(8), Validators.maxLength(25), this.checkPristine, this.match],
             updateOn: 'blur'
           });
-        this.createMode = this.dual || false;
-        if (this.createMode) {
-          this.$password = new FormControl(null,
-            {
-              validators: [Validators.required, this.checkPristine, this.match],
-              updateOn: 'blur'
-            });
-        }
+        this.$password2 = new FormControl(null,
+          {
+            validators: [Validators.required, this.checkPristine, this.match],
+            updateOn: 'blur'
+          });
         break;
       default: console.log('Error:No input type specified!');
     }
