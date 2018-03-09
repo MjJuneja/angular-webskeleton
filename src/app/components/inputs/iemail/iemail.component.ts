@@ -7,11 +7,11 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./iemail.component.css']
 })
 export class IemailComponent implements OnInit {
-  vEmail: FormControl;
-  uEmail: string;
+  $email: FormControl;
+  _email: string;
 
   constructor() {
-    this.vEmail = new FormControl(null, { validators: [Validators.required, Validators.email, this.checkEmail, this.checkPristine], updateOn: 'blur' });
+    this.$email = new FormControl(null, { validators: [Validators.required, Validators.email, this.checkEmail, this.checkPristine], updateOn: 'blur' });
   }
 
   checkPristine = (control: FormControl): object => {

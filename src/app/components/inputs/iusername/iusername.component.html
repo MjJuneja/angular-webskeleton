@@ -1,13 +1,13 @@
 <extended-input
-  [labelText]="'Username'"
-  [inputErrors]="vUsername.errors"
-  [errorKeys]="{pristine: '',
-                required: 'Username is required',
-                pattern: 'Invalid username (Should have only a-z,0-9,.,_ and 5-20 chars,without any spaces)',
-                unavailable : 'Username already taken!',
-                '503': 'No internet access'
-              }"
-  [message]="message"
-  [messageClass]="'message'">
-  <input [formControl]="vUsername" [(ngModel)]="uUsername" type="text"/>
+[labelText]="'Username'"
+[inputErrors]="$username.errors"
+[errorKeys]="{pristine: '',
+              required: 'Username is required',
+              pattern: 'Invalid username (Should have only a-z,0-9,.,_ and 5-20 chars,without any spaces)',
+              unavailable : 'Username already taken!',
+              '503': 'No internet access'
+            }"
+[message]="message"
+[messageClass]="'uMessage'">
+<input [formControl]="$username" [(ngModel)]="_username" type="text"/>
 </extended-input>

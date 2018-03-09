@@ -10,18 +10,17 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class IusernameComponent implements OnInit {
 
-  vUsername: FormControl;
-  uUsername: string;
+  $username: FormControl;
+  _username: string;
   message: string = '';
 
   constructor(private iusernameService: IusernameService) {
-    this.vUsername = new FormControl(null,
+    this.$username = new FormControl(null,
       {
         validators: [Validators.required, Validators.pattern('[a-zA-Z0-9_.]{5,20}'), this.checkPristine],
         asyncValidators: [this.checkAvailability.bind(this)],
-        updateOn: 'blur'
+        updateOn: 'change'
       });
-
   }
 
   checkPristine = (control: FormControl): object => {
