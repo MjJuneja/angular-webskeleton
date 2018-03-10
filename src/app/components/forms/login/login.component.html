@@ -1,6 +1,8 @@
 <form (submit)="onSubmit()">
-  <advanceInput [type]="'username'"></advanceInput>
-  <advanceInput [type]="'password'"></advanceInput>
+  <!--<advanceInput [type]="'username'"></advanceInput>
+  <advanceInput [type]="'password'"></advanceInput>-->
+  <iemail (userUpdated)="handleUserUpdated($event)"></iemail>
+  <iusername></iusername>
   <button class="btn btn-primary">
     Login
   </button>

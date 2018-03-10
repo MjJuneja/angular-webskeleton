@@ -18,7 +18,10 @@ export class LoginComponent implements OnInit {
 
   constructor(private loginService: loginFormService) {
   }
-
+  
+  handleUserUpdated(user){
+    console.log(user);
+  }
 
   onSubmit() {
     this.status = [];

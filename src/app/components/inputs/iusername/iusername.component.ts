@@ -1,5 +1,5 @@
 import { IusernameService } from './iusername.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,EventEmitter,Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -13,7 +13,7 @@ export class IusernameComponent implements OnInit {
   $username: FormControl;
   _username: string;
   message: string = '';
-
+  @Output() userUpdated = new EventEmitter<Object>();
   constructor(private iusernameService: IusernameService) {
     this.$username = new FormControl(null,
       {
@@ -28,7 +28,11 @@ export class IusernameComponent implements OnInit {
     if (control.pristine)
       return { pristine: true };
     else
+      {
+        var obj = {form:this.$username,name:'username'};
+    this.userUpdated.emit(obj);
       return null;
+      }
   }
 
   checkAvailability = (control: FormControl): any => {
@@ -46,10 +50,13 @@ export class IusernameComponent implements OnInit {
         resolve({ '503': true });
       })
     })
+    var obj = {form:this.$username,name:'username'};
+    this.userUpdated.emit(obj);
     return q;
   }
 
   ngOnInit() {
-
+    var obj = {form:this.$username,name:'username'};
+    this.userUpdated.emit(obj);
   }
 }

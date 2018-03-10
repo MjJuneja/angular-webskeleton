@@ -1,10 +1,10 @@
 <form (submit)="onSubmit()">
-  <advanceInput [type]="'email'"></advanceInput>
+  <!--<advanceInput [type]="'email'"></advanceInput>
   <advanceInput [type]="'username'"></advanceInput>
-  <advanceInput [type]="'password2'"></advanceInput>
-  <!-- <iemail></iemail>
-  <iusername></iusername>
-  <ipassword [dual]='true'></ipassword> -->
+  <advanceInput [type]="'password2'"></advanceInput>-->
+  <iemail (userUpdated)="handleUserUpdated($event)"></iemail>
+  <iusername (userUpdated)="handleUserUpdated($event)"></iusername>
+  <ipassword [dual]='true' (userUpdated)="handleUserUpdated($event)"></ipassword> 
   <button class="btn btn-primary">
     Signup
   </button>
