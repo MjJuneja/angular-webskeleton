@@ -1,35 +1,44 @@
-import { signupFormService } from './signup.service';
-import { AdvanceinputComponent } from './../../inputs/advanceinput/advanceinput.component';
-import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
+import { IusernameComponent } from './../../inputs/iusername/iusername.component';
+import { IemailComponent } from './../../inputs/iemail/iemail.component';
+import { SignupFormService } from './signup.service';
+import { Component, OnInit, ViewChild} from '@angular/core';
+import { IpasswordComponent } from '../../inputs/ipassword/ipassword.component';
 
 @Component({
   selector: 'signupForm',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
-  providers: [signupFormService]
+  providers: [SignupFormService]
 })
 export class SignupComponent implements OnInit {
 
-  @ViewChildren(AdvanceinputComponent)
-  fields:QueryList<AdvanceinputComponent>
   formValues:object={};
   status=[];
   result:string = '';
+  fields={};
 
-  constructor(private signupService:signupFormService) {
+  @ViewChild(IemailComponent)
+  iEmail:IemailComponent
+  @ViewChild(IusernameComponent)
+  iUsername:IusernameComponent
+  @ViewChild(IpasswordComponent)
+  iPassword:IpasswordComponent
+
+
+  constructor(private signupService:SignupFormService) {
   }
 
 
   onSubmit(){
     this.status=[];
-    this.fields.forEach(item => {
-      this.status.push(item['$'+item.type].status);
-      this.formValues[item.type] = item['$'+item.type].value;
+    Object.keys(this.fields).forEach(item => {
+      this.status.push(this.fields[item]["$"+item].status);
+      this.formValues[item] = this.fields[item]["$"+item].value;
     });
     if(this.status.indexOf('INVALID')!==-1){
       this.result = 'Please fill correct data!';
     }
-    else if(this.fields.last.$password.value !== this.fields.last.$password2.value){
+    else if(this.fields["password2"]["$password2"].value !== this.fields["password2"]["$password"].value){
       this.result = "Passwords don't match! Enter password carefully.";
     }
     else if(this.status.indexOf('PENDING')!==-1){
@@ -54,7 +63,11 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit():void {
+    this.fields["email"]=this.iEmail;
+    this.fields["username"]=this.iUsername;
+    this.fields["password2"]=this.iPassword;
   }
 
 
 }
+

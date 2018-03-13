@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 
-export class signupFormService {
+export class SignupFormService {
   constructor(private httpClient: HttpClient) {
   }
 
