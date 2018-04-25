@@ -1,3 +1,4 @@
+import { MultiComponent } from './components/forms/MultiFields/multi.component';
 import { ExtendedInputComponent } from './components/inputs/extended-input/extended-input.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -24,7 +25,8 @@ import { LoginComponent } from './components/forms/login/login.component';
     IfullnameComponent,
     IpasswordComponent,
     AdvanceinputComponent,
-    LoginComponent
+    LoginComponent,
+    MultiComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule
