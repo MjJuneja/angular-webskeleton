@@ -5,7 +5,8 @@ import { Component, OnInit, ViewChild, ViewChildren, QueryList } from '@angular/
 
 @Component({
   selector: 'multiForm',
-  templateUrl: './multi.component.html'
+  templateUrl: './multi.component.html',
+  styleUrls:['./multi.component.scss']
 })
 export class MultiComponent implements OnInit {
 
@@ -47,19 +48,25 @@ export class MultiComponent implements OnInit {
       }
     });
   }
-  //----------------------------------------
-  constructor() {
-  }
 
-  onSubmit() {
-    this.defineFields();
-    this.getFields();
-
+  fillValues(){
     this.status = [];
     Object.keys(this.fields).forEach(item => {
       this.status.push(this.fields[item]["$" + item].status);
       this.formValues[item] = this.fields[item]["$" + item].value;
     });
+  }
+
+  //----------------------------------------
+  constructor() {
+  }
+
+
+  onSubmit() {
+    this.defineFields();
+    this.getFields();
+    this.fillValues();
+
     if (this.status.indexOf('INVALID') !== -1) {
       this.result = 'Please fill correct data!';
     }

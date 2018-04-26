@@ -5,7 +5,7 @@ import { FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'iusername',
   templateUrl: './iusername.component.html',
-  styleUrls: ['./iusername.component.css'],
+  styleUrls: ['./iusername.component.scss'],
   providers: [IusernameService]
 })
 export class IusernameComponent implements OnInit {

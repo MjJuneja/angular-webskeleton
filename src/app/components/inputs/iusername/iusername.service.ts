@@ -9,7 +9,7 @@ export class IusernameService {
   }
 
   checkAvailability(obj: object):any {
-    let url = environment.apiUrl + '/commonroutes/checkUsername';
+    let url = environment.apiUrl + environment.checkUsername;
     return this.httpClient.post<object>(url, obj);
   }
 }

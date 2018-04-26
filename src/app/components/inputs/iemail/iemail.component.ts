@@ -4,7 +4,7 @@ import { FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'iemail',
   templateUrl: './iemail.component.html',
-  styleUrls: ['./iemail.component.css']
+  styleUrls: ['./iemail.component.scss']
 })
 export class IemailComponent implements OnInit {
   $email: FormControl;

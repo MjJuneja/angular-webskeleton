@@ -6,4 +6,5 @@
 export const environment = {
   production: false,
   apiUrl: 'http://ec2-35-165-36-171.us-west-2.compute.amazonaws.com:8080',
+  checkUsername: '/commonroutes/checkUsername'
 };

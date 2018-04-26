@@ -4,7 +4,7 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 @Component({
   selector: 'extended-input',
   templateUrl: './extended-input.component.html',
-  styleUrls: ['./extended-input.component.css']
+  styleUrls: ['./extended-input.component.scss']
 })
 
 

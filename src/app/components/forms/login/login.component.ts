@@ -6,7 +6,7 @@ import { Component, OnInit, ViewChild, ViewChildren, QueryList } from '@angular/
 @Component({
   selector: 'loginForm',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.scss'],
   providers: [loginFormService]
 })
 export class LoginComponent implements OnInit {

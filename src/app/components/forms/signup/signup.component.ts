@@ -7,7 +7,7 @@ import { IpasswordComponent } from '../../inputs/ipassword/ipassword.component';
 @Component({
   selector: 'signupForm',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css'],
+  styleUrls: ['./signup.component.scss'],
   providers: [SignupFormService]
 })
 export class SignupComponent implements OnInit {
@@ -24,17 +24,29 @@ export class SignupComponent implements OnInit {
   @ViewChild(IpasswordComponent)
   iPassword:IpasswordComponent
 
+  ngOnInit():void {
+    this.fields["email"]=this.iEmail;
+    this.fields["username"]=this.iUsername;
+    this.fields["password2"]=this.iPassword;
+  }
+
 
   constructor(private signupService:SignupFormService) {
   }
 
-
-  onSubmit(){
+  fillValues(){
     this.status=[];
     Object.keys(this.fields).forEach(item => {
       this.status.push(this.fields[item]["$"+item].status);
       this.formValues[item] = this.fields[item]["$"+item].value;
     });
+  }
+
+
+  onSubmit(){
+
+    this.fillValues();
+
     if(this.status.indexOf('INVALID')!==-1){
       this.result = 'Please fill correct data!';
     }
@@ -61,13 +73,6 @@ export class SignupComponent implements OnInit {
         this.result = "Error occurred! Try again later.";
       })
   }
-
-  ngOnInit():void {
-    this.fields["email"]=this.iEmail;
-    this.fields["username"]=this.iUsername;
-    this.fields["password2"]=this.iPassword;
-  }
-
 
 }
 

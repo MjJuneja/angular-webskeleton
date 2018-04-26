@@ -4,7 +4,7 @@ import { FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'ipassword',
   templateUrl: './ipassword.component.html',
-  styleUrls: ['./ipassword.component.css']
+  styleUrls: ['./ipassword.component.scss']
 })
 export class IpasswordComponent implements OnInit {
 

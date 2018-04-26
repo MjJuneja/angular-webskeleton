@@ -5,7 +5,7 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'advanceInput',
   templateUrl: './advanceinput.component.html',
-  styleUrls: ['./advanceinput.component.css'],
+  styleUrls: ['./advanceinput.component.scss'],
   providers: [AdvanceinputService]
 })
 export class AdvanceinputComponent implements OnInit {
